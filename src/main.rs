@@ -19,7 +19,8 @@ struct Cli {
 
 #[derive(Args, Clone)]
 struct Actions {
-    /// Install a package, the short name 'S' is inspired by the AUR helper 'yay'. TODO: Change this name if too confusing.
+    //the short name 'S' is inspired by the AUR helper 'yay'. TODO: Change this name if too confusing.
+    /// Install a package
     #[arg(short = 'S', value_name = "INSTALL_PACKAGE")]
     install: Option<String>,
 
@@ -37,9 +38,8 @@ async fn main() -> Result<()> {
             println!("Removing package: {}", package_to_remove);
             Command::new("sudo")
                 .arg("dnf")
-                .arg("install")
+                .arg("remove")
                 .arg(package_to_remove)
-                .arg("-y")
                 .status()?;
         }
 
